@@ -8,22 +8,22 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 
-const signFormSchema = zod.object({
+const signInFormSchema = zod.object({
   email: zod.string().email('E-mail inválido'),
 })
 
-type SignFormData = zod.infer<typeof signFormSchema>
+type SignInFormData = zod.infer<typeof signInFormSchema>
 
 export function SignIn() {
   const {
     register,
     handleSubmit,
     formState: { isSubmitting },
-  } = useForm<SignFormData>({
-    resolver: zodResolver(signFormSchema),
+  } = useForm<SignInFormData>({
+    resolver: zodResolver(signInFormSchema),
   })
 
-  async function handleSingIn(data: SignFormData) {
+  async function handleSingIn(data: SignInFormData) {
     console.log(data)
     await new Promise((resolve) => setTimeout(resolve, 2000))
     toast.success('Enviamos um link de autenticação para seu e-mail')
